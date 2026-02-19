@@ -112,7 +112,7 @@ Git required username and email before committing.
 Solution:
 
 git config --global user.name "Shubha Naik"  
-git config --global user.email "your-email@example.com"
+git config --global user.email "shubhavb04@gmail.com"
 
 ---
 
