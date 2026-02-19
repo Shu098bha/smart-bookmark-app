@@ -1,36 +1,131 @@
-This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app).
+# 🚀 Smart Bookmark App
 
-## Getting Started
+A full-stack bookmark manager built using Next.js (App Router), Supabase, Google OAuth, and Tailwind CSS.
 
-First, run the development server:
+---
 
-```bash
+##  Features
+
+- Google Login (OAuth authentication only)
+- Add bookmarks (Title + URL)
+- Each user sees only their own bookmarks
+- Real-time updates using Supabase Realtime
+- Delete bookmarks
+- Deployed on Vercel (Production Ready)
+
+---
+
+##  Tech Stack
+
+- Next.js 16 (App Router)
+- Supabase (Auth + Database + Realtime)
+- Google OAuth
+- Tailwind CSS
+- Git & GitHub
+- Vercel (Deployment)
+
+---
+
+##  Live Demo
+
+https://smart-bookmark-app-gold-kappa.vercel.app
+
+---
+
+##  Installation (Local Setup)
+
+Run the following commands:
+
+npm install
 npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
-```
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+Then open:
 
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
+http://localhost:3000
 
-This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
+---
 
-## Learn More
+##  Problems I Faced & How I Solved Them
 
-To learn more about Next.js, take a look at the following resources:
+### 1 PowerShell Execution Policy Error
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
+Problem:
+npx cannot be loaded because running scripts is disabled
 
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js) - your feedback and contributions are welcome!
+Solution:
+Set-ExecutionPolicy -Scope CurrentUser -ExecutionPolicy RemoteSigned
 
-## Deploy on Vercel
+---
 
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
+### 2 Row Level Security Blocking Data
 
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.
+Problem:
+Bookmarks were not visible after inserting.
+
+Cause:
+Row Level Security (RLS) was enabled but policies were not defined.
+
+Solution:
+Created RLS policy using:
+
+auth.uid() = user_id
+
+This ensured users can only view and modify their own bookmarks.
+
+---
+
+### 3 Supabase Environment Variables Not Working on Vercel
+
+Problem:
+Deployment failed with error: supabaseUrl is required
+
+Cause:
+Environment variables were not added in Vercel.
+
+Solution:
+Added the following in Vercel project settings:
+
+NEXT_PUBLIC_SUPABASE_URL  
+NEXT_PUBLIC_SUPABASE_ANON_KEY  
+
+Then redeployed the project.
+
+---
+
+### 4 Port 3000 Already in Use
+
+Problem:
+Next.js dev server could not start because port 3000 was busy.
+
+Solution:
+Stopped existing Node process and restarted with:
+
+npm run dev
+
+
+
+### 5 Git Authentication Error
+
+Problem:
+Git required username and email before committing.
+
+Solution:
+
+git config --global user.name "Shubha Naik"  
+git config --global user.email "your-email@example.com"
+
+---
+
+## 💡 Future Improvements
+
+- Edit bookmark feature
+- Search bookmarks
+- Add categories
+- UI animations
+- Dark / Light mode toggle
+
+---
+
+## 👩‍💻 Author
+
+Shubha Naik
